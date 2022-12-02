@@ -20,8 +20,7 @@
         private Strategy Strategy { get; }
 
         /// <summary>
-        /// Score based on incomplete and therefore incorrect
-        /// requirements
+        /// Score based on incomplete and therefore incorrect requirements
         /// </summary>
         public int RoundScoreBefore => (int)MyGuessBefore + ScoreForDidIWin(MyGuessBefore);
 
@@ -81,28 +80,18 @@
             };
         }
 
-        private int ScoreForDidIWin(RockPaperScissors myGuess) =>
-            ElfGuess switch
+        private int ScoreForDidIWin(RockPaperScissors myGuess)
+        {
+            if (ElfGuess == myGuess) return 3;
+
+            var result = (ElfGuess, myGuess) switch
             {
-                RockPaperScissors.Rock => myGuess switch
-                {
-                    RockPaperScissors.Rock => 3,
-                    RockPaperScissors.Paper => 6,
-                    _ => 0
-                },
-                RockPaperScissors.Paper => myGuess switch
-                {
-                    RockPaperScissors.Paper => 3,
-                    RockPaperScissors.Scissors => 6,
-                    _ => 0
-                },
-                RockPaperScissors.Scissors => myGuess switch
-                {
-                    RockPaperScissors.Scissors => 3,
-                    RockPaperScissors.Rock => 6,
-                    _ => 0
-                },
-                _ => throw new ArgumentOutOfRangeException()
+                (RockPaperScissors.Rock, RockPaperScissors.Paper) or
+                (RockPaperScissors.Paper, RockPaperScissors.Scissors) or
+                (RockPaperScissors.Scissors, RockPaperScissors.Rock) => 6,
+                _ => 0
             };
+            return result;
+        }
     }
 }
