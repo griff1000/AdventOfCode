@@ -1,22 +1,13 @@
-﻿var input = await File.ReadAllLinesAsync("./input.txt");
-int maxCalories = 0, calorieCount = 0, fattestElf = 0, elfCount = 0;
+﻿int calorieCount = 0, elfCount = 0;
 var caloriesPerElf = new Dictionary<int, int>();
-foreach (var line in input)
+foreach (var line in await File.ReadAllLinesAsync("./input.txt"))
 {
     if (string.IsNullOrEmpty(line))
     {
         caloriesPerElf.Add(++elfCount, calorieCount);
-        if (calorieCount > maxCalories)
-        {
-            maxCalories = calorieCount;
-            fattestElf = elfCount;
-        }
         calorieCount = 0;
+        continue;
     }
-    else
-    {
-        calorieCount += int.Parse(line);
-    }
+    calorieCount += int.Parse(line);
 }
-var top3 = caloriesPerElf.OrderByDescending(x => x.Value).Take(3).Sum(x => x.Value);
-Console.WriteLine($"Fattest elf is {fattestElf}; Sum of top 3 calories = {top3}");
+Console.WriteLine($"Fattest elf is {caloriesPerElf.MaxBy(cpe => cpe.Value).Key}; Sum of top 3 calories = {caloriesPerElf.OrderByDescending(x => x.Value).Take(3).Sum(x => x.Value)}");
