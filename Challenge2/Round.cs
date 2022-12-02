@@ -54,9 +54,8 @@
                 _ => throw new ArgumentOutOfRangeException()
             };
 
-        private RockPaperScissors CalculateMyGuessBasedOnFullRequirements()
-        {
-            return Strategy switch
+        private RockPaperScissors CalculateMyGuessBasedOnFullRequirements() =>
+            Strategy switch
             {
                 Strategy.Lose => 
                     ElfGuess switch
@@ -78,7 +77,6 @@
                     },
                 _ => throw new ArgumentOutOfRangeException()
             };
-        }
 
         private int ScoreForDidIWin(RockPaperScissors myGuess)
         {
