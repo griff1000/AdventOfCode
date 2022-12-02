@@ -55,7 +55,7 @@
                 _ => throw new ArgumentOutOfRangeException()
             };
 
-        private int ScoreForGuess(RockPaperScissors go) =>
+        private static int ScoreForGuess(RockPaperScissors go) =>
             go switch
             {
                 RockPaperScissors.Rock => 1,
