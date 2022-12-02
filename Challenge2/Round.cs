@@ -23,12 +23,12 @@
         /// Score based on incomplete and therefore incorrect
         /// requirements
         /// </summary>
-        public int RoundScoreBefore => ScoreForGuess(MyGuessBefore) + ScoreForDidIWin(MyGuessBefore);
+        public int RoundScoreBefore => (int)MyGuessBefore + ScoreForDidIWin(MyGuessBefore);
 
         /// <summary>
         /// Score based on full requirements
         /// </summary>
-        public int RoundScoreAfter => ScoreForGuess(MyGuessAfter) + ScoreForDidIWin(MyGuessAfter);
+        public int RoundScoreAfter => (int)MyGuessAfter + ScoreForDidIWin(MyGuessAfter);
 
         public Round(string round)
         {
@@ -52,15 +52,6 @@
                 "A" or "X" => RockPaperScissors.Rock,
                 "B" or "Y" => RockPaperScissors.Paper,
                 "C" or "Z" => RockPaperScissors.Scissors,
-                _ => throw new ArgumentOutOfRangeException()
-            };
-
-        private static int ScoreForGuess(RockPaperScissors go) =>
-            go switch
-            {
-                RockPaperScissors.Rock => 1,
-                RockPaperScissors.Paper => 2,
-                RockPaperScissors.Scissors => 3,
                 _ => throw new ArgumentOutOfRangeException()
             };
 
