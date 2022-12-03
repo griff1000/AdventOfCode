@@ -18,9 +18,7 @@
 
         internal static int Priority(char value)
         {
-            var charValue = value - 64;
-            if (charValue > 32) charValue -= 32;
-            else charValue += 26;
+            var charValue = value >= 'a' ? value - 'a' + 1 : value - 'A' + 27;
             return charValue;
         }
     }
