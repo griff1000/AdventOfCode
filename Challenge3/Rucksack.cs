@@ -2,8 +2,8 @@
 {
     internal class Rucksack
     {
-        private char[] Compartment1 { get; }
-        private char[] Compartment2 { get; }
+        private IEnumerable<char> Compartment1 { get; }
+        private IEnumerable<char> Compartment2 { get; }
         internal IEnumerable<char> TotalContents => Compartment1.Concat(Compartment2);
         private char CommonItem => Compartment1.Intersect(Compartment2).Single();
         internal int CommonItemPriority => Priority(CommonItem);
@@ -12,14 +12,13 @@
         {
             var array = contents.ToCharArray();
             if (array.Length % 2 > 0) throw new ArgumentException("Odd number of elements", nameof(contents));
-            Compartment1 = array.Take(array.Length / 2).ToArray();
-            Compartment2 = array.Skip(array.Length / 2).ToArray();
+            Compartment1 = array.Take(array.Length / 2);
+            Compartment2 = array.Skip(array.Length / 2);
         }
 
         internal static int Priority(char value)
         {
-            var charValue = value >= 'a' ? value - 'a' + 1 : value - 'A' + 27;
-            return charValue;
+            return value >= 'a' ? value - 'a' + 1 : value - 'A' + 27;
         }
     }
 }
