@@ -27,6 +27,7 @@
         /// <summary>
         /// Score based on full requirements
         /// </summary>
+        //public int RoundScoreAfter => (int)MyGuessAfter + ScoreForStrategy();
         public int RoundScoreAfter => (int)MyGuessAfter + ScoreForDidIWin(MyGuessAfter);
 
         public Round(string round)
@@ -53,6 +54,13 @@
                 "C" or "Z" => RockPaperScissors.Scissors,
                 _ => throw new ArgumentOutOfRangeException()
             };
+
+        //private int ScoreForStrategy() => Strategy switch
+        //{
+        //    Strategy.Win => 6,
+        //    Strategy.Draw => 3,
+        //    _ => 0
+        //};
 
         private RockPaperScissors CalculateMyGuessBasedOnFullRequirements() =>
             Strategy switch
