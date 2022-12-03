@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Challenge3", "Challenge3\Challenge3.csproj", "{FB20EB48-629B-4109-940B-30307D566C5E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{74A08B04-262F-4371-A085-79B671178EB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74A08B04-262F-4371-A085-79B671178EB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74A08B04-262F-4371-A085-79B671178EB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB20EB48-629B-4109-940B-30307D566C5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB20EB48-629B-4109-940B-30307D566C5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB20EB48-629B-4109-940B-30307D566C5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB20EB48-629B-4109-940B-30307D566C5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
