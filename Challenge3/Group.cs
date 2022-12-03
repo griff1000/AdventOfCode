@@ -11,6 +11,7 @@
 
         internal Group(Rucksack[] rucksacks)
         {
+            if (rucksacks.Length != 3) throw new ArgumentException("Invalid number of rucksacks", nameof(rucksacks));
             Rucksacks = rucksacks;
         }
     }
