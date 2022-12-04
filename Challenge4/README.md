@@ -1,14 +1,14 @@
-﻿This one contains two implementations - one simple one which creates full arrays of all the items in the ranges and then uses LINQ to interrogate them, one slightly more complex one that uses Range objects that just contain the min/max bounds of the range and does some of its own processing to work out whether there is partial or complete overlap.
+﻿This one contains three implementations - one simple one which creates full arrays of all the items in the ranges and then uses LINQ to interrogate them; one slightly more complex one that uses a bespoke Range class that just contain the min/max bounds of the range and does some of its own processing to work out whether there is partial or complete overlap; and one very similar one which uses the System.Range struct rather than the bespoke Range class.
 
 You can use Benchmark.Net to see the differences:
 ```
-|                        Method |       Mean |     Error |    StdDev | Rank |     Gen0 |    Gen1 |  Allocated |
-|------------------------------ |-----------:|----------:|----------:|-----:|---------:|--------:|-----------:|
-|      ImplementationUsingRange |   164.1 us |   1.18 us |   1.44 us |    1 |  35.6445 |  8.7891 |  292.41 KB |
-| SimpleImplementationUsingLinq | 5,237.1 us | 100.42 us | 119.54 us |    2 | 242.1875 | 78.1250 | 2021.24 KB |
+|                          Method |       Mean |    Error |   StdDev |     Median | Rank |     Gen0 |    Gen1 |  Allocated |
+|-------------------------------- |-----------:|---------:|---------:|-----------:|-----:|---------:|--------:|-----------:|
+|  ImplementationUsingSystemRange |   164.8 us |  3.21 us |  5.53 us |   164.6 us |    1 |  30.0293 |  3.9063 |  245.54 KB |
+| ImplementationUsingBespokeRange |   172.0 us |  3.36 us |  7.98 us |   169.3 us |    2 |  35.6445 |  8.7891 |  292.41 KB |
+|   SimpleImplementationUsingLinq | 5,229.4 us | 45.07 us | 42.16 us | 5,220.4 us |    3 | 242.1875 | 78.1250 | 2021.24 KB |
 ```
-
-As you can see, the slightly more complex implementation is much quicker and uses much less memory and far fewer garbage collections.
+As you can see, both the slightly more complex implementations are much quicker and use much less memory and far fewer garbage collections than the naive, simple implementation.  The one that uses the System.Range struct is slightly quicker and significantly more memory efficient than the bespoke Range class version.
 
 To use Benchmark.net, uncomment the `BenchmarkRunner.Run<Benchmarker>();` line in the Program.cs, then use `dotnet build -c Release` to build a release version of the solution, then find the path to the Challenge4.dll output by the build and enter `dotnet <path to Challenge4.dll>\Challenge4.dll`
 

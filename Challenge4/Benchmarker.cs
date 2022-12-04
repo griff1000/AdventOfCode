@@ -4,6 +4,7 @@
     using BenchmarkDotNet.Order;
     using FirstImplementation;
     using SecondImplementation;
+    using ThirdImplementation;
 
     [MemoryDiagnoser]
     [Orderer(SummaryOrderPolicy.FastestToSlowest)]
@@ -16,7 +17,7 @@
         public async Task Setup()
         {
 
-            _input = await File.ReadAllLinesAsync("./input.txt");
+            _input = await File.ReadAllLinesAsync("input.txt");
         }
 
         [Benchmark]
@@ -28,9 +29,19 @@
         }
 
         [Benchmark]
-        public void ImplementationUsingRange()
+        public void ImplementationUsingBespokeRange()
         {
-            var assignments = _input.Select(i => new AssignmentWithRanges(i)).ToArray(); 
+            var assignments 
+                = _input.Select(i => new AssignmentWithRanges(i)).ToArray(); 
+            _ = assignments.Count(a => a.OneContainedInOther);
+            _ = assignments.Count(a => a.IsOverlap);
+        }
+
+        [Benchmark]
+        public void ImplementationUsingSystemRange()
+        {
+            var assignments 
+                = _input.Select(i => new AssignmentWithSystemRanges(i)).ToArray();
             _ = assignments.Count(a => a.OneContainedInOther);
             _ = assignments.Count(a => a.IsOverlap);
         }
