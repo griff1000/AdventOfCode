@@ -16,7 +16,7 @@
         public async Task Setup()
         {
 
-            _input = await File.ReadAllLinesAsync("input.txt");
+            _input = await File.ReadAllLinesAsync("./input.txt");
         }
 
         [Benchmark]

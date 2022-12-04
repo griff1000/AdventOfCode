@@ -8,6 +8,8 @@ You can use Benchmark.Net to see the differences:
 | SimpleImplementationUsingLinq | 5,237.1 us | 100.42 us | 119.54 us |    2 | 242.1875 | 78.1250 | 2021.24 KB |
 ```
 
+As you can see, the slightly more complex implementation is much quicker and uses much less memory and far fewer garbage collections.
+
 To use Benchmark.net, uncomment the `BenchmarkRunner.Run<Benchmarker>();` line in the Program.cs, then use `dotnet build -c Release` to build a release version of the solution, then find the path to the Challenge4.dll output by the build and enter `dotnet <path to Challenge4.dll>\Challenge4.dll`
 
 # Day 4: Camp Cleanup 
