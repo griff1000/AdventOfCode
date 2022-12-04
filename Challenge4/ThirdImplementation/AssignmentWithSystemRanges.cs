@@ -12,8 +12,8 @@
         public AssignmentWithSystemRanges(string input)
         {
             var ranges = input.Split('-',',');
-            FirstElfRange = new Range(new Index(int.Parse(ranges[0])), new Index(int.Parse(ranges[1])));
-            SecondElfRange = new Range(new Index(int.Parse(ranges[2])), new Index(int.Parse(ranges[3])));
+            FirstElfRange = int.Parse(ranges[0])..int.Parse(ranges[1]);
+            SecondElfRange = int.Parse(ranges[2])..int.Parse(ranges[3]);
         }
 
         private bool DoRangesOverlap()
