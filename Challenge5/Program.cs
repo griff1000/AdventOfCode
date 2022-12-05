@@ -13,6 +13,9 @@ foreach (var line in input)
     }
     else if (line.StartsWith('['))
     {
+        // Since the input file defines the crates in the stacks before it defines the stacks,
+        // need a temporary place to hold those definitions until the stacks are defined.  We 
+        // could just assume 9 stacks to simplify things I guess, but where's the fun in that?
         var crates = line.ToCharArray();
         for (var i = 0; i < 9; i++)
         {
@@ -25,6 +28,8 @@ foreach (var line in input)
     }
     else
     {
+        // We *could* just combine this code in the `else if (line.StartsWith('['))` section
+        // but this is just here in case the number of stacks changes in part 2.  Which it didn't.
         var stackIds = line.Split(' ');
 
         foreach (var stackId in stackIds.Where(sid => !string.IsNullOrEmpty(sid)))
