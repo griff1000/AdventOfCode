@@ -28,7 +28,7 @@ foreach (var line in input.Where(i => i.StartsWith('[')).Reverse())
 foreach (var line in input.Where(i => i.StartsWith("move")))
 {
     var move = new Move(line);
-    move.ApplyMoves(crateStacks);
+    move.ApplyMoveOperations(crateStacks);
 }
 
 // Write out final state

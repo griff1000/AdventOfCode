@@ -6,7 +6,7 @@ internal class Move
     private int SourceStack { get; }
     private int DestinationStack { get; }
 
-    internal void ApplyMoves(List<CrateStack> stacks)
+    internal void ApplyMoveOperations(List<CrateStack> stacks)
     {
         var removedCrates = stacks[SourceStack].RemoveCrates(NumberToMove);
         stacks[DestinationStack].AddCrates(removedCrates);
