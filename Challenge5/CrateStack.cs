@@ -4,6 +4,8 @@ internal class CrateStack
 {
     internal Stack<Crate> Crates { get; }
 
+    // Could get away without this method but it provides a seam where we could change the
+    // implementation later if we wanted to
     internal void AddCrate(Crate crate)
     {
         Crates.Push(crate);
