@@ -15,7 +15,8 @@ foreach (var line in input)
     {
         // Since the input file defines the crates in the stacks before it defines the stacks,
         // need a temporary place to hold those definitions until the stacks are defined.  We 
-        // could just assume 9 stacks to simplify things I guess, but where's the fun in that?
+        // could just assume 9 stacks to simplify things I guess (which we partially do below
+        // anyway), but where's the fun in that?
         var crates = line.ToCharArray();
         for (var i = 0; i < 9; i++)
         {
