@@ -11,7 +11,10 @@ var crateStacks = new List<CrateStack>(
 // Should probably refactor this out to a CrateSetupProcessor class or something, but hey ho
 foreach (var line in input.Where(i => i.StartsWith('[')).Reverse())
 {
-    var crateIds = line.ToCharArray();
+    // Not too keen on this implementation; could possibly do something with regex or string.Split
+    // but we need to keep track of which stack each crate in the line is for, and several of those
+    // could be blanks so for now just gone for simple positional extraction
+    var crateIds = line.ToCharArray(); 
     for (var i = 0; i < 9; i++)
     {
         var crateIdIndex = i * 4 + 1; // Bit of maths to get to the relevant part of the char[]
