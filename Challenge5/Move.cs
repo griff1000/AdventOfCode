@@ -1,17 +1,22 @@
-﻿namespace Challenge5
-{
-    internal class Move
-    {
-        internal int NumberToMove { get; }
-        internal int SourceColumn { get; }
-        internal int DestinationColumn { get; }
+﻿namespace Challenge5;
 
-        internal Move(string input)
-        {
-            var elements = input.Split(' ');
-            NumberToMove = Convert.ToInt32(elements[1]);
-            SourceColumn = Convert.ToInt32(elements[3]);
-            DestinationColumn = Convert.ToInt32(elements[5]);
-        }
+internal class Move
+{
+    private int NumberToMove { get; }
+    private int SourceStack { get; }
+    private int DestinationStack { get; }
+
+    internal void ApplyMoves(List<CrateStack> stacks)
+    {
+        var removedCrates = stacks[SourceStack].RemoveCrates(NumberToMove);
+        stacks[DestinationStack].AddCrates(removedCrates);
+    }
+
+    internal Move(string input)
+    {
+        var elements = input.Split(' ');
+        NumberToMove = Convert.ToInt32(elements[1]);
+        SourceStack = Convert.ToInt32(elements[3]) - 1; // 0 based index
+        DestinationStack = Convert.ToInt32(elements[5]) - 1; // 0 based index
     }
 }

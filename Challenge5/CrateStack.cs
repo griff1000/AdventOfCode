@@ -1,32 +1,35 @@
-﻿namespace Challenge5
+﻿namespace Challenge5;
+
+internal class CrateStack
 {
-    internal class CrateStack
+    internal Stack<Crate> Crates { get; }
+
+    internal void AddCrate(Crate crate)
     {
-        internal Stack<Crate> Crates { get; }
-
-        internal void AddCrates(Crate[] cratesToAdd)
+        Crates.Push(crate);
+    }
+    internal void AddCrates(IEnumerable<Crate> cratesToAdd)
+    {
+        // foreach (var crate in cratesToAdd.Reverse()) // Easiest answer to part 2
+        foreach (var crate in cratesToAdd) 
         {
-            // foreach (var crate in cratesToAdd.Reverse()) // Easiest answer to part 2
-            foreach (var crate in cratesToAdd) 
-            {
-                 Crates.Push(crate);
-            }
+            AddCrate(crate);
+        }
+    }
+
+    internal IEnumerable<Crate> RemoveCrates(int numberToRemove)
+    {
+        var cratesRemoved = new List<Crate>();
+        for (var i = 0; i < numberToRemove; i++)
+        {
+            cratesRemoved.Add(Crates.Pop());
         }
 
-        internal Crate[] RemoveCrates(int numberToRemove)
-        {
-            var cratesRemoved = new List<Crate>();
-            for (var i = 0; i < numberToRemove; i++)
-            {
-                cratesRemoved.Add(Crates.Pop());
-            }
+        return cratesRemoved;
+    }
 
-            return cratesRemoved.ToArray();
-        }
-
-        internal CrateStack(Crate[] crates)
-        {
-            Crates = new Stack<Crate>(crates.Reverse());
-        }
+    internal CrateStack()
+    {
+        Crates = new Stack<Crate>();
     }
 }
