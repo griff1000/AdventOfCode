@@ -10,10 +10,8 @@
 
         internal Rucksack(string contents)
         {
-            var array = contents.ToCharArray();
-            if (array.Length % 2 > 0) throw new ArgumentException("Odd number of elements", nameof(contents));
-            Compartment1 = array.Take(array.Length / 2);
-            Compartment2 = array.Skip(array.Length / 2);
+            Compartment1 = contents[..(contents.Length / 2)];
+            Compartment2 = contents[(contents.Length / 2)..];
         }
 
         internal static int Priority(char value)
