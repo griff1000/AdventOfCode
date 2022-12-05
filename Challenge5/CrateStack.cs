@@ -34,4 +34,10 @@ internal class CrateStack
     {
         Crates = new Stack<Crate>();
     }
+
+    internal static List<CrateStack> CreateStacks(int numberOfStacks)
+    {
+        return new List<CrateStack>(
+            Enumerable.Range(1, numberOfStacks).Select(_ => new CrateStack()));
+    }
 }

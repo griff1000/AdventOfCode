@@ -1,10 +1,7 @@
 ﻿using Challenge5;
 
 var input = await File.ReadAllLinesAsync("./Input.txt");
-
-// Create list of 9 empty crate stacks
-var crateStacks = new List<CrateStack>(
-    Enumerable.Range(1, 9).Select(_ => new CrateStack()));
+var crateStacks = CrateStack.CreateStacks(9);
 
 // Add crates to stacks.  We need to work bottom-up not top-down, hence the .Reverse()
 // Should probably refactor this out to a CrateSetupProcessor class or something, but hey ho
