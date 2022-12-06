@@ -27,7 +27,7 @@
         /// <summary>
         /// Score based on full requirements
         /// </summary>
-        //public int RoundScoreAfter => (int)MyGuessAfter + ScoreForStrategy();
+        //public int RoundScoreAfter => (int)MyGuessAfter + ScoreForDidIWinBasedOnStrategy();
         public int RoundScoreAfter => (int)MyGuessAfter + ScoreForDidIWin(MyGuessAfter);
 
         public Round(string round)
