@@ -12,9 +12,10 @@
 
         internal Assignment(string input)
         {
-            var ranges = input.Split('-', ',');
-            FirstElfSections = Enumerable.Range(int.Parse(ranges[0]), int.Parse(ranges[1]) - int.Parse(ranges[0]) + 1);
-            SecondElfSections = Enumerable.Range(int.Parse(ranges[2]), int.Parse(ranges[3]) - int.Parse(ranges[2]) + 1);
+            var ranges = input.Split('-', ',').Select(int.Parse).ToArray();
+
+            FirstElfSections = Enumerable.Range(ranges[0], ranges[1] - ranges[0] + 1);
+            SecondElfSections = Enumerable.Range(ranges[2], ranges[3] - ranges[2] + 1);
         }
     }
 }

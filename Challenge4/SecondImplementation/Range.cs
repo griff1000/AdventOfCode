@@ -5,9 +5,10 @@
         internal int Min { get; }
         internal int Max { get; }
 
-        internal Range(string min, string max)
+        internal Range(int min, int max)
         {
-            Min = int.Parse(min); Max = int.Parse(max);
+            Min = min; 
+            Max = max;
         }
     }
 }

@@ -11,7 +11,7 @@
 
         public AssignmentWithRanges(string input)
         {
-            var ranges = input.Split('-',',');
+            var ranges = input.Split('-',',').Select(int.Parse).ToArray();
             FirstElfRange = new Range(ranges[0], ranges[1]);
             SecondElfRange = new Range(ranges[2], ranges[3]);
         }
