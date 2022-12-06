@@ -1,5 +1,5 @@
 ﻿var input = await File.ReadAllTextAsync("./Input.txt");
-const int requiredSequenceLength = 4; // 14 for second part
-var count = requiredSequenceLength;
-while (input[(count - requiredSequenceLength)..count++].Distinct().Count() != requiredSequenceLength){ }
-Console.WriteLine($"End position of first unique sequence of {requiredSequenceLength} = {count-1}");
+const int requiredLength = 4; // 14 for second part
+var count = requiredLength;
+while (input[(count - requiredLength)..count++].Distinct().Count() != requiredLength){ }
+Console.WriteLine($"End position of first unique sequence of {requiredLength} = {count-1}");
