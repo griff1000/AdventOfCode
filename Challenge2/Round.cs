@@ -55,13 +55,6 @@
                 _ => throw new ArgumentOutOfRangeException()
             };
 
-        //private int ScoreForStrategy() => Strategy switch
-        //{
-        //    Strategy.Win => 6,
-        //    Strategy.Draw => 3,
-        //    _ => 0
-        //};
-
         private RockPaperScissors CalculateMyGuessBasedOnFullRequirements() =>
             Strategy switch
             {
@@ -99,5 +92,13 @@
             };
             return result;
         }
+
+        // Alternative, more efficient method - but more code rather than re-using existing
+        //private int ScoreForDidIWinBasedOnStrategy() => Strategy switch
+        //{
+        //    Strategy.Win => 6,
+        //    Strategy.Draw => 3,
+        //    _ => 0
+        //};
     }
 }
