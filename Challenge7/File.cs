@@ -1,6 +1,6 @@
 ﻿namespace Challenge7
 {
-    internal class File
+    internal struct File
     {
         internal string Name { get; }
         internal long Size { get; }

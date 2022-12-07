@@ -1,5 +1,5 @@
-﻿using Directory=Challenge7.Directory;
-using File= Challenge7.File;
+﻿using Directory = Challenge7.Directory;
+using File = Challenge7.File;
 
 var input = await System.IO.File.ReadAllLinesAsync("./Input.txt");
 
@@ -23,20 +23,25 @@ foreach (var command in input)
                             currentDirectory = currentDirectory!.Parent;
                             break;
                         default:
+                            // There's only one `$ cd /` command, right at the top, so I
+                            // didn't bother adding more processing for that
                             if (currentDirectory == null)
                             {
                                 var rootDirectory = new Directory(elements[2], null);
                                 currentDirectory = rootDirectory;
                                 allDirectories.Add(rootDirectory);
                             }
-                                
                             else
-                                currentDirectory = currentDirectory!.Directories.Single(d => d.Name == elements[2]);
+                            {
+                                // Assumes no mistaken directory changing to one that doesn't exist
+                                currentDirectory = currentDirectory.Directories
+                                                    .Single(d => d.Name == elements[2]);
+                            }
                             break;
                     }
-
                     break;
                 case "ls":
+                    // No need to do anything since we'll deal with the output a row at a time
                     break;
             }
             break;
@@ -51,6 +56,8 @@ foreach (var command in input)
     }
 }
 
+// Go back to root folder (If I'd bothered to handle the `$ cd /` case, this is what
+// it would have done)
 while (currentDirectory!.Parent is not null)
 {
     currentDirectory = currentDirectory.Parent;
