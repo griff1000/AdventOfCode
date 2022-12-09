@@ -1,48 +1,47 @@
-﻿namespace Challenge9
+﻿namespace Challenge9;
+
+using System.Drawing;
+
+internal class Knot
 {
-    using System.Drawing;
+    internal Point Position { get; private set; }
 
-    internal class Knot
+    public Knot(int x, int y)
     {
-        internal Point Position { get; private set; }
+        Position = new Point(x, y);
+    }
 
-        public Knot(int x, int y)
+    internal void ProcessMove(string direction, Point? leadingPosition)
+    {
+        if (leadingPosition is null)
         {
-            Position = new Point(x, y);
+            Move(direction);
         }
+        else if (DoesThisNeedToMove(leadingPosition.Value))
+        {
+            if (leadingPosition.Value.X > Position.X) { Move("R"); }
+            if (leadingPosition.Value.X < Position.X) { Move("L"); }
+            if (leadingPosition.Value.Y > Position.Y) { Move("U"); }
+            if (leadingPosition.Value.Y < Position.Y) { Move("D"); }
+        }
+    }
 
-        internal void ProcessMove(string direction, Point? leadingPosition)
+    private void Move(string direction)
+    {
+        var startPosition = Position;
+        _ = direction switch
         {
-            if (leadingPosition is null)
-            {
-                Move(direction);
-            }
-            else if (DoesTailNeedToMove(leadingPosition.Value))
-            {
-                if (leadingPosition.Value.X > Position.X) { Move("R"); }
-                if (leadingPosition.Value.X < Position.X) { Move("L"); }
-                if (leadingPosition.Value.Y > Position.Y) { Move("U"); }
-                if (leadingPosition.Value.Y < Position.Y) { Move("D"); }
-            }
-        }
+            "U" => startPosition with { Y = (startPosition.Y)++ },
+            "D" => startPosition with { Y = (startPosition.Y)-- },
+            "L" => startPosition with { X = (startPosition.X)-- },
+            "R" => startPosition with { X = (startPosition.X)++ },
+            _ => Position
+        };
+        Position = startPosition;
+    }
 
-        private void Move(string direction)
-        {
-            var startPosition = Position;
-            _ = direction switch
-            {
-                "U" => startPosition with { Y = (startPosition.Y)++ },
-                "D" => startPosition with { Y = (startPosition.Y)-- },
-                "L" => startPosition with { X = (startPosition.X)-- },
-                "R" => startPosition with { X = (startPosition.X)++ },
-                _ => Position
-            };
-            Position = startPosition;
-        }
-
-        private bool DoesTailNeedToMove(Point leadingPosition)
-        {
-            return Math.Abs(leadingPosition.X - Position.X) > 1 || Math.Abs(leadingPosition.Y - Position.Y) > 1;
-        }
+    private bool DoesThisNeedToMove(Point leadingPosition)
+    {
+        return Math.Abs(leadingPosition.X - Position.X) > 1 || Math.Abs(leadingPosition.Y - Position.Y) > 1;
     }
 }
