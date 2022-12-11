@@ -2,6 +2,7 @@
 
 var input = await File.ReadAllLinesAsync("./Input.txt");
 var monkeyDefinitions = input.Chunk(7);
+// For problem 1, set applyRelief in the Monkey constructor to true and set round < 20
 var monkeys = monkeyDefinitions.Select(def => new Monkey(def.ToList(), false)).ToList();
 for (var round = 0; round < 10000; round++)
 {

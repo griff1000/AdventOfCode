@@ -4,7 +4,7 @@
 
     internal class Monkey
     {
-        private Queue<BigInteger> Items { get; }
+        private Queue<long> Items { get; }
         private Operation Operation { get; }
         private Test Test { get; }
         internal long InspectionCount { get; private set; }
@@ -18,11 +18,11 @@
             ApplyRelief = applyRelief;
         }
 
-        private Queue<BigInteger> GetInitialItems(string startingItems)
+        private Queue<long> GetInitialItems(string startingItems)
         {
             var items = startingItems.Split(new[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
-            var queue = new Queue<BigInteger>();
-            items.Where((_, index) => index >= 2).Select(i => new BigInteger(int.Parse(i))).ToList().ForEach(queue.Enqueue);
+            var queue = new Queue<long>();
+            items.Where((_, index) => index >= 2).Select(long.Parse).ToList().ForEach(queue.Enqueue);
             return queue;
         }
 

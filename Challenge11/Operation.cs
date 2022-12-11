@@ -1,8 +1,5 @@
 ﻿namespace Challenge11
 {
-    using System.Diagnostics;
-    using System.Numerics;
-
     internal class Operation
     {
         /// <summary>
@@ -11,7 +8,7 @@
         private const int RealInputDivisor = 9699690;
 
         private string OperationSign { get; }
-        private BigInteger Operand { get; }
+        private long Operand { get; }
         private bool UseOld { get; }
 
         internal Operation(string operation)
@@ -21,7 +18,7 @@
             var operand = elements[5];
             if (operand == "old")
             {
-                Operand = BigInteger.Zero;
+                Operand = 0;
                 UseOld = true;
             }
             else
@@ -31,7 +28,7 @@
             }
         }
 
-        internal BigInteger NewWorry(BigInteger old)
+        internal long NewWorry(long old)
         {
             var operand = UseOld ? old : Operand;
             var result = OperationSign switch
@@ -42,9 +39,7 @@
             };
             // All the test divisors are prime, so you can keep the new worry relatively small
             // by dividing by the product of all of them and taking the remainder.
-            var (_, remainder) = BigInteger.DivRem(result, RealInputDivisor);
-            Debug.Assert(result > 0);
-            return remainder;
+            return result % RealInputDivisor;
         }
     }
 }

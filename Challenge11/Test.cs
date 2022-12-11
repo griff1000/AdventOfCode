@@ -1,10 +1,8 @@
 ﻿namespace Challenge11
 {
-    using System.Numerics;
-
     internal class Test
     {
-        private BigInteger Operand { get; }
+        private long Operand { get; }
         private int TrueTarget { get; }
         private int FalseTarget { get; }
 
@@ -16,9 +14,9 @@
             FalseTarget = int.Parse(testDefs[2].Split(" ")[^1]);
         }
 
-        internal int FindTarget(BigInteger worryLevel)
+        internal int FindTarget(long worryLevel)
         {
-            var (_, remainder) = BigInteger.DivRem(worryLevel, Operand);
+            var remainder = worryLevel % Operand;
             return remainder == 0 ? TrueTarget : FalseTarget;
         }
     }
