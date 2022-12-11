@@ -28,7 +28,7 @@
             }
         }
 
-        internal long NewWorry(long old)
+        internal long NewWorry(long old, bool applyRelief)
         {
             var operand = UseOld ? old : Operand;
             var result = OperationSign switch
@@ -37,9 +37,10 @@
                 "+" => old + operand,
                 _ => throw new ArgumentOutOfRangeException()
             };
-            // All the test divisors are prime, so you can keep the new worry relatively small
-            // by dividing by the product of all of them and taking the remainder.
-            return result % RealInputDivisor;
+            // EITHER: Apply relief
+            // OR: All the test divisors are prime, so you can keep the new worry
+            // relatively small by dividing by the product of all of them and taking the remainder.
+            return applyRelief ? result / 3 : result % RealInputDivisor; 
         }
     }
 }

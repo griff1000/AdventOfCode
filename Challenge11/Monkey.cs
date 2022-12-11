@@ -32,8 +32,7 @@
             {
                 InspectionCount++;
                 var item = Items.Dequeue();
-                item = Operation.NewWorry(item);
-                if (ApplyRelief) item /= 3; // relief
+                item = Operation.NewWorry(item, ApplyRelief);
                 monkeyList[Test.FindTarget(item)].Items.Enqueue(item);
             }
         }
