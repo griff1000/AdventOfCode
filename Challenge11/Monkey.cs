@@ -1,6 +1,5 @@
 ﻿namespace Challenge11
 {
-    using System.Diagnostics;
     using System.Numerics;
 
     internal class Monkey
@@ -8,7 +7,7 @@
         private Queue<BigInteger> Items { get; }
         private Operation Operation { get; }
         private Test Test { get; }
-        internal int InspectionCount { get; private set; }
+        internal long InspectionCount { get; private set; }
         private bool ApplyRelief { get; }
 
         internal Monkey(List<string> monkeyDefinition, bool applyRelief)
