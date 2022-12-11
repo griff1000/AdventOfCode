@@ -16,8 +16,7 @@
 
         internal int FindTarget(long worryLevel)
         {
-            var remainder = worryLevel % Operand;
-            return remainder == 0 ? TrueTarget : FalseTarget;
+            return worryLevel % Operand == 0 ? TrueTarget : FalseTarget;
         }
     }
 }

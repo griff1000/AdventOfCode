@@ -7,17 +7,19 @@ var signalStrengths = new Dictionary<int, int>();
 var crt = new CRT();
 
 var cycle = 0;
-for (var i = 0; i < instructions.Count; i++)
+foreach (var instruction in instructions)
 {
-    cycle++;
-    crt.ProcessPixel(cycle, cpu.Register);
-
-    if (cycle == 20 || (cycle + 20) % 40 == 0)
+    do
     {
-        signalStrengths.Add(cycle, cpu.SignalStrength(cycle));
-    }
-    cpu.ExecuteInstruction(instructions[i]);
-    if (!instructions[i].InstructionComplete) i--; // do same instruction until complete
+        cycle++;
+        crt.ProcessPixel(cycle, cpu.Register);
+
+        if (cycle == 20 || (cycle + 20) % 40 == 0)
+        {
+            signalStrengths.Add(cycle, cpu.SignalStrength(cycle));
+        }
+        cpu.ExecuteInstruction(instruction);
+    } while (!instruction.InstructionComplete);
 }
 Console.WriteLine($"Sum of first six signal strengths: {signalStrengths.Take(6).Sum(ss => ss.Value)}");
 crt.RenderCRT();
