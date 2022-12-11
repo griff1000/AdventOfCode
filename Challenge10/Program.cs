@@ -22,4 +22,4 @@ foreach (var instruction in instructions)
     } while (!instruction.InstructionComplete);
 }
 Console.WriteLine($"Sum of first six signal strengths: {signalStrengths.Take(6).Sum(ss => ss.Value)}");
-crt.RenderCRT();
+crt.Render();

@@ -1,11 +1,10 @@
 ﻿namespace Challenge10;
 
 using System.Text;
-using Microsoft.VisualBasic;
 
 internal class CRT
 {
-    internal List<List<bool>> Pixels { get; } = new ();
+    private List<List<bool>> Pixels { get; } = new ();
 
     internal CRT()
     {
@@ -28,7 +27,7 @@ internal class CRT
         Pixels[vertical][horizontal] = isLit;
     }
 
-    internal void RenderCRT()
+    internal void Render()
     {
         foreach (var row in Pixels)
         {
